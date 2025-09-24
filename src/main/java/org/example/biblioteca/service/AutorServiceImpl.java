@@ -36,23 +36,27 @@ public class AutorServiceImpl implements AutorService {
         Optional<Autor> autor = autorRepository.findById(id);
         return autor.map(autorMapper::autorToAutorDto).orElseThrow(() -> new EntityNotFoundException("Autor no encontrado"));
     }
+
     public AutorDto save(AutorDto autorDto) {
         if (autorDto.getLibros() == null || autorDto.getLibros().isEmpty()) {
             throw new IllegalArgumentException("El autor debe tener al menos un libro");
         }
         Autor autor = new Autor();
-        Libro libro = new Libro();
         autor.setNombre(autorDto.getNombre());
-        autor.addLibro(libro);
+        autor.setCodigo(autorDto.getCodigo());
+        for(LibroDto libroDto : autorDto.getLibros()) {
+            Libro libro = new Libro();
+            libro.setTitulo(libroDto.getTitulo());
+            libro.setCodigo(libroDto.getCodigo());
+            autor.addLibro(libro);
+        }
         Autor autorGuardar = autorRepository.save(autor);
         return autorMapper.autorToAutorDto(autorGuardar);
     }
-
     public List<AutorDto> obtenerTodosLosAutores() {
         List<Autor> autores = autorRepository.findAll();
         return autores.stream().map(autorMapper::autorToAutorDto).collect(Collectors.toList());
     }
-
 
     public void deleteById(Integer id) {
         Autor autor = autorRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Autor no encontrado"));

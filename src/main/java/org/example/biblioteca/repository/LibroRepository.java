@@ -13,7 +13,7 @@ public interface LibroRepository extends JpaRepository<Libro,Integer> {
     // Buscar por código (único)
     Optional<Libro> findByCodigo(String codigo);
 
-    // Buscar por categoría
+    //
     List<Libro> findByAutor(Autor autor);
 
     // Buscar por ID de categoría

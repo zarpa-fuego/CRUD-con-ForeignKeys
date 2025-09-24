@@ -32,5 +32,4 @@ public interface LibroMapper {
         autor.setId(autorId);
         return autor;
     }
-
 }

@@ -16,11 +16,8 @@ public class LibroDto {
     @Size(min = 3, max = 10, message = "3 a 10 carácteres")
     private String codigo;
 
-    @NotNull(message = "Debería existir el actor")
+   // @NotNull(message = "Debería existir el Author")
     private Integer autorId;
-
     private String autorNombre;
     private String autorCodigo;
-
-
 }

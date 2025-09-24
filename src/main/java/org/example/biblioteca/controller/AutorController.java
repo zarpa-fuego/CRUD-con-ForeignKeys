@@ -1,14 +1,10 @@
 package org.example.biblioteca.controller;
-
 import jakarta.validation.Valid;
 import org.example.biblioteca.dto.AutorDto;
-import org.example.biblioteca.dto.LibroDto;
 import org.example.biblioteca.service.AutorService;
-import org.example.biblioteca.service.LibroService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -22,6 +18,9 @@ public class AutorController {
     // Crear nueva venta
     @PostMapping
     public ResponseEntity<AutorDto> crearAutor(@Valid @RequestBody AutorDto autorDto) {
+        System.out.println("Creando Autor");
+        System.out.println("Autor: " + autorDto.getNombre());
+        System.out.println("Autor: " + autorDto.getLibros());
         AutorDto autorCreado = autorService.save(autorDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(autorCreado);
     }

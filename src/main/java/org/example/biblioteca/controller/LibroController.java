@@ -53,7 +53,7 @@ public class LibroController {
         return libroService.obtenerLibrosPorAutor(autorId);
     }
 
-    @GetMapping("/buscar")
+    @GetMapping("/buscarTitulo")
     public List<LibroDto> buscarLibros(@RequestParam String titulo) {
         return libroService.obtenerLibrosPorNombre (titulo);
     }
@@ -63,7 +63,4 @@ public class LibroController {
         libroService.eliminarLibro(id);
         return ResponseEntity.noContent().build();
     }
-
-
-
 }

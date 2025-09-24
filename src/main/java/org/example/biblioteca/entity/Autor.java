@@ -28,10 +28,10 @@ public class Autor {
 
     @OneToMany(mappedBy = "autor", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Libro> libros = new ArrayList<>();
-
     // Métodos de conveniencia para manejar la relación bidireccional
     public void addLibro(Libro libro) {
-        libros.add(libro);
         libro.setAutor(this);
+
+        libros.add(libro);
     }
 }
